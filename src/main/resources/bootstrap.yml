@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: hunter
+logging:
+  file:
+    path: ${LOG_PATH:logs}
+    name: ${spring.application.name}.log
+  config: classpath:logback-spring.xml
+server:
+  port: 8806

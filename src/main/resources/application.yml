@@ -1,0 +1,39 @@
+spring:
+  kafka:
+    bootstrap-servers: 172.30.10.237:9092
+    consumer:
+      group-id: test-consumer-group-2
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      auto-commit-interval: 100
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+  datasource:
+    #    url: @spring.datasource.url@
+    #    username: @spring.datasource.username@
+    #    password: @spring.datasource.password@
+    url: jdbc:mysql://172.30.10.206:3306/hunter
+    username: root
+    password: 123456
+    tomcat:
+      max-active: 200
+    hikari:
+      maximum-pool-size: 10
+  redis:
+    host: 172.30.10.237
+    #port: 6379
+    password: 123456
+    database: 10
+    timeout: 1000
+    jedis:
+      pool:
+        max-active: 50
+        max-wait: 2000
+        max-idle: 8
+        min-idle: 0
+  http:
+    encoding:
+      force: true
+  jackson:
+    default-property-inclusion: non_null

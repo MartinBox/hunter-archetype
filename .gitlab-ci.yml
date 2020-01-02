@@ -1,0 +1,32 @@
+variables:
+    GIT_SUBMODULE_STRATEGY: recursive
+
+stages:
+    - debug
+    - release
+
+debug:
+    stage: debug
+    script:
+        - sh build.sh d
+    retry:
+        max: 1
+        when: always
+    only:
+        refs:
+            - develop
+            - /^feature/.*$/
+
+release:
+    stage: release
+    script:
+        - sh build.sh r
+    only:
+        refs:
+            - /^release/.*$/
+            - /^hotfix/.*$/
+            - master
+            - tags
+    retry:
+        max: 1
+        when: always
